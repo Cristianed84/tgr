@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DB_TGRModelStoreContainer" CdmEntityContainer="DB_TGREntities">
+    <EntitySetMapping Name="Nodes">
+      <EntityTypeMapping TypeName="DB_TGRModel.Nodes">
+        <MappingFragment StoreEntitySet="Nodes">
+          <ScalarProperty Name="parentid" ColumnName="parentid" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="idx" ColumnName="idx" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

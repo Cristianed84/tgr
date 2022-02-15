@@ -6,36 +6,17 @@ using System.Net.Http;
 using System.Web.Http;
 
 namespace PruebaTGR.Controllers
-{
-
+{   
     [RoutePrefix("nodes")]    
     public class NodesController : ApiController
-    {   
-
-        IList<Models.Nodo> lista()
-        {
-            IList<Models.Nodo> lst = new List<Models.Nodo>();
-            Models.Nodo item = new Models.Nodo();
-            item.id = "id1";
-            item.parentId = "root";
-            item.name = "carpeta";
-            IList<Models.Nodo> child = new List<Models.Nodo>();
-            Models.Nodo c1a = new Models.Nodo();
-            c1a.id = "id1a";
-            c1a.parentId = "id1";
-            IList<Models.Nodo> childc1a = new List<Models.Nodo>();
-            c1a.children = childc1a;
-            child.Add(c1a);
-            item.children = child;
-            lst.Add(item);
-            return lst;
-        }
+    {
+        DB data = new DB();        
 
         public IHttpActionResult Get(string id)
         {
             try
             {
-                var resp = lista().FirstOrDefault(x => x.id == id);
+                var resp = data.GetNodo(id);                
                 if (resp != null)
                 {
                     return Ok(resp);                    
@@ -51,12 +32,44 @@ namespace PruebaTGR.Controllers
             }
         }
 
-        // GET api/values/5
-        //public Models.Nodo Get(string id)
-        //{
-        //    var resp = lista().FirstOrDefault(x => x.id == id);
-        //    return resp;
-        //}                       
-        
+        public IHttpActionResult Delete(string id)
+        {
+            try
+            {
+                var resp = data.DeleteNodo(id);
+                if (resp == true)
+                {
+                    return Ok("Operacion Exitosa");
+                }
+                else
+                {
+                    return Ok("El nodo no fue encontrado");
+                }
+            }
+            catch
+            {
+                return Ok("Los parametros no son correctos");
+            }
+        }
+
+        public IHttpActionResult Post([FromBody] Models.Nodo nodo)
+        {
+            try
+            {   
+                var resp = data.Post(nodo);
+                if (resp!=null)
+                {
+                    return Ok(resp);
+                }
+                else
+                {
+                    return Ok("No fue posible agregar el nodo");
+                }
+            }
+            catch
+            {                
+                return Ok("Los parametros no son correctos");
+            }
+        }
     }
 }
