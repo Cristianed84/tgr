@@ -53,5 +53,5 @@ jobs:
         with:
           app-name: 'CBMPruebaTGR'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_1F9CB79666A44E2883AF2964A9372AB3 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_C467F2689C7F4C97B01B52DF1F35D380 }}
           package: .
